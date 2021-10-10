@@ -1,0 +1,81 @@
+body {
+	font-family: "Montserrat", sans-serif;
+	background-color: #a0a2ac;
+	font-size: 18px;
+}
+
+form {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+.container {
+	max-width: 602px;
+	margin: 50px auto;
+}
+
+label {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+input {
+	margin-bottom: 15px;
+	outline: none;
+	max-width: 350px;
+	height: 30px;
+	padding-left: 15px;
+	font-size: 18px;
+	border: 1px solid black;
+
+	border-radius: 5px;
+}
+
+input[type="file"] {
+	padding-left: 0;
+	display: none;
+}
+
+label[for="upload"] {
+	display: block;
+	border: 1px solid black;
+	height: 30px;
+	width: 300px;
+	text-align: center;
+	margin: 0;
+	line-height: 30px;
+	cursor: pointer;
+	background-color: #bfd6d1;
+	transition: all ease 0.5s;
+	margin: 0 auto 15px;
+	border-radius: 5px;
+}
+
+label[for="upload"]:hover {
+	box-shadow: 4px 3px 30px 5px rgba(150, 191, 184, 0.9);
+}
+
+button {
+	max-width: 371px;
+	height: 30px;
+	padding: 0;
+}
+
+button[type=reset] {
+	margin-bottom: 15px;
+	line-height: 30px;
+	font-size: 18px;
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+button[type=button] {
+	font-size: 18px;
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 5px;
+}
