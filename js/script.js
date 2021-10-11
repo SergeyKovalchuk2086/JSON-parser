@@ -17,41 +17,54 @@ upload.addEventListener('change', function (e) {
 
 function displayForm(contentData) {
 	let form = document.createElement('form');
-	form.setAttribute('name', `${contentData.name}`)
-	container.appendChild(form)
+	if( contentData.name ==='register' ) {
 
-	let inputText;
+		form.setAttribute('name', `${contentData.name}`)
+		container.appendChild(form)
 
-	for (let i = 0; i < contentData.fields.length; i++) {
-		let inputData = contentData.fields[i].input;
+		let inputText;
 
-		inputText = document.createElement('input');
-		inputText.setAttribute('type', `${inputData.type}`);
+		for (let i = 0; i < contentData.fields.length; i++) {
+			let inputData = contentData.fields[i].input;
 
-		if (inputData.required) inputText.setAttribute('required', '');
-		inputText.setAttribute('placeholder', `${inputData.placeholder}`);
-		form.appendChild(inputText)
-	}
+			inputText = document.createElement('input');
+			inputText.setAttribute('type', `${inputData.type}`);
 
-	let resetBtn = document.createElement('button');
-	resetBtn.setAttribute('type', 'reset');
-	resetBtn.innerHTML = 'Reset'
-
-	let deleteForm = document.createElement('button');
-	deleteForm.setAttribute('type', 'button');
-	deleteForm.setAttribute('id', 'deleteBtn');
-	deleteForm.innerHTML = 'Delete form'
-
-
-	form.appendChild(resetBtn)
-	form.appendChild(deleteForm)
-
-
-	form.addEventListener('click', function(e){
-		if(e.target.id === 'deleteBtn') {
-			container.removeChild(form)
+			if (inputData.required) inputText.setAttribute('required', '');
+			inputText.setAttribute('placeholder', `${inputData.placeholder}`);
+			form.appendChild(inputText)
 		}
-	})
+
+		let resetBtn = document.createElement('button');
+		resetBtn.setAttribute('type', 'reset');
+		resetBtn.innerHTML = 'Reset'
+
+		let deleteForm = document.createElement('button');
+		deleteForm.setAttribute('type', 'button');
+		deleteForm.setAttribute('id', 'deleteBtn');
+		deleteForm.innerHTML = 'Delete form'
+
+		form.appendChild(resetBtn)
+		form.appendChild(deleteForm)
+
+		form.addEventListener('click', function(e){
+			if(e.target.id === 'deleteBtn') {
+				container.removeChild(form)
+			}
+		})
+
+		//references
+		let refData = contentData.references[0];
+		let refValues = Object.values(refData);
+		console.log(refValues);
+		refValues.forEach((item) => {
+			let ref = document.createElement('a');
+			ref.setAttribute('href', '#');
+			ref.innerHTML = item;
+			form.appendChild(ref)
+
+		})
+	}
 }
 
 
