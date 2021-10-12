@@ -19,7 +19,7 @@
 				"input": {
 					"type": "password",
 					"required": true,
-					"placeholder": "password"
+					"placeholder": "Password"
 				}
 			},
 			{
