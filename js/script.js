@@ -1,6 +1,7 @@
 const upload = document.querySelector("#upload");
 const container = document.querySelector(".container");
 
+//загружаем файл
 upload.addEventListener("change", function (e) {
 	const file = e.target.files[0];
 	const reader = new FileReader();
@@ -14,16 +15,28 @@ upload.addEventListener("change", function (e) {
 let inputText;
 let inputEmail;
 let inputPassword;
-let ref;
+let label;
+let signUp; //кнопка
+let links; //блок с ссылками
+let ref; //ссылка
+let p; //текст
+
 
 //отображаем форму
 function displayForm(contentData) {
+	//создаём форму
 	let form = document.createElement("form");
 	form.setAttribute("name", `${contentData.name}`);
 	container.appendChild(form);
 
 	//перебираем input
 	contentData.fields.forEach((item) => {
+		console.log(item);
+
+		if (item.label && item.input) {
+			return createInputAndLabel(item);
+		}
+
 		if (item.input.type === "text") {
 			return createInput(item.input);
 		} else if (item.input.type === "email") {
@@ -42,32 +55,54 @@ function displayForm(contentData) {
 		form.appendChild(inputText);
 	}
 
-	//кнопки сброса и удаления формы
-	let resetBtn = document.createElement("button");
-	resetBtn.setAttribute("type", "reset");
-	resetBtn.innerHTML = "Reset";
+	//создаём input & label
+	function createInputAndLabel(item) {
+		label = document.createElement("label");
+		inputText.setAttribute("type", `${input.type}`);
+		inputText.setAttribute("placeholder", `${input.placeholder}`);
+		inputText.setAttribute("required", ``);
+		form.appendChild(inputText);
+	}
 
-	let deleteForm = document.createElement("button");
-	deleteForm.setAttribute("type", "button");
-	deleteForm.setAttribute("id", "deleteBtn");
-	deleteForm.innerHTML = "Delete form";
 
-	form.appendChild(resetBtn);
-	form.appendChild(deleteForm);
-
-	//удалить
-	form.addEventListener("click", function (e) {
-		if (e.target.id === "deleteBtn") {
-			container.removeChild(form);
-		}
+	//создаём button Sign Up
+	contentData.buttons.forEach((item) => {
+		Object.values(item).forEach((i) => {
+			signUp = document.createElement("button");
+			signUp.setAttribute("type", "submit")
+			signUp.innerText = i;
+			form.appendChild(signUp);
+		});
 	});
 
-	//создаём ссылки под формой
+
+	//кнопка удаления формы
+	container.addEventListener('click', function (event) {
+		if (event.target.classList.value === "deleteBtn") {
+			container.removeChild(form);
+		}
+	})
+
+	//перемистить куда надо
+	links = document.createElement('div');
+	links.classList.add("links");
+	form.appendChild(links);
+
+	//создаём ссылку под формой
 	contentData.references.forEach((item) => {
-		Object.values(item).forEach((i) => {
-			ref = document.createElement("a");
-			ref.innerText = i;
-			form.appendChild(ref);
-		});
+
+		for (i in item) {
+			if (i === "text without ref") {
+				p = document.createElement("p");
+				p.innerText = item[i];
+				links.appendChild(p);
+			} else if (i === "text") {
+				ref = document.createElement("a");
+				ref.innerText = item[i];
+				ref.setAttribute("href", `${item.ref}`);
+				ref.classList.add("signIn");
+				links.appendChild(ref);
+			}
+		}
 	});
 }

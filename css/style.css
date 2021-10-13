@@ -1,20 +1,23 @@
 body {
 	font-family: "Montserrat", sans-serif;
-	background-color: #a0a2ac;
 	font-size: 18px;
+}
+
+.container {
+	max-width: 370px;
+	margin: 50px auto;
+	display: grid;
+	grid-template-columns: 250px 50px;
+	grid-template-rows: 40px minmax(300px, 1000px);
+	grid-column-gap: 15px;
 }
 
 form {
 	display: flex;
-	justify-content: space-between;
 	flex-direction: column;
-	max-width: 350px;
-	margin: 0 auto;
-}
-
-.container {
-	max-width: 602px;
-	margin: 50px auto;
+	max-width: 750px;
+	flex-wrap: wrap;
+	margin: 5px auto 0;
 }
 
 label {
@@ -25,13 +28,18 @@ label {
 input {
 	margin-bottom: 15px;
 	outline: none;
-	max-width: 350px;
+	width: 350px;
 	height: 30px;
 	padding-left: 15px;
 	font-size: 18px;
 	border: 1px solid black;
-
 	border-radius: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
 }
 
 input[type="file"] {
@@ -39,23 +47,32 @@ input[type="file"] {
 	display: none;
 }
 
+.deleteBtn {
+	display: block;
+	font-size: 25px;
+	height: 32px;
+	width: 103px;
+	background-color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.deleteBtn:hover {
+	transition: all ease 1s;
+	background-color: red;
+}
+
 label[for="upload"] {
 	display: block;
 	border: 1px solid black;
 	height: 30px;
-	width: 300px;
+	width: 250px;
 	text-align: center;
-	margin: 0;
 	line-height: 30px;
 	cursor: pointer;
-	background-color: #bfd6d1;
-	transition: all ease 0.5s;
-	margin: 0 auto 15px;
 	border-radius: 5px;
-}
-
-label[for="upload"]:hover {
-	box-shadow: 4px 3px 30px 5px rgba(150, 191, 184, 0.9);
+	margin: 0;
 }
 
 button {
@@ -64,18 +81,37 @@ button {
 	padding: 0;
 }
 
-button[type=reset] {
-	margin-bottom: 15px;
-	line-height: 30px;
+button[type="submit"] {
+	width: 185px;
+	height: 30px;
 	font-size: 18px;
 	cursor: pointer;
 	border: 1px solid black;
+	background-color: #fff;
 	border-radius: 5px;
+	font-family: "Montserrat", sans-serif;
 }
 
-button[type=button] {
-	font-size: 18px;
-	cursor: pointer;
-	border: 1px solid black;
-	border-radius: 5px;
+.links {
+	margin-top: 15px;
+	display: flex;
+	width: 350px;
+}
+
+.links p {
+	margin: 0;
+	font-size: 16px;
+	margin-right: 15px;
+}
+
+.links a {
+	margin-right: 15px;
+}
+
+.signIn {
+	transition: all ease 0.5s;
+}
+
+.signIn:hover {
+	color: red;
 }
