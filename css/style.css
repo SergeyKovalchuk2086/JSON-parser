@@ -9,7 +9,6 @@
 body {
 	font-size: 18px;
 	user-select: none;
-	transition: all ease 0.5s;
 }
 
 .container {
@@ -38,6 +37,7 @@ label {
 	font-size: 18px;
 	margin-bottom: 5px;
 	margin-left: 15px;
+	margin-top: 10px;
 }
 
 input {
@@ -51,10 +51,15 @@ input {
 	border-radius: 5px;
 }
 
+form[name="register"] input {
+	margin-bottom: 25px;
+}
+
 a {
 	text-decoration: none;
 	color: black;
 	font-size: 16px;
+	cursor: pointer;
 }
 
 input[type="file"] {
