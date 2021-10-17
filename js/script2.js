@@ -12,9 +12,11 @@ upload.addEventListener("change", function (e) {
 	};
 });
 
+let legend; //заголовок
 let form;
 let input;
 let label;
+let colorList; //для input type=color
 let option; //для select input
 let button; //кнопка
 let links; //блок с ссылками
@@ -28,9 +30,16 @@ function displayForm(contentData) {
 	Object.entries(contentData).forEach(([key, value]) => {
 		//form name
 		if (key === "name") {
+			legend = document.createElement("legend");
+			legend.innerText = `${value}`;
+			form.appendChild(legend);
+
 			form.setAttribute("name", `${value}`);
 			form.classList.add(`${value}`);
 			container.appendChild(form);
+			if (value === "website_color_scheme") {
+				form.classList.add("scheme");
+			}
 		}
 
 		//inputs & labels
@@ -96,7 +105,9 @@ function createInput(value) {
 			if (value === "technology") {
 				input = document.createElement("select");
 				input.classList.add("select");
-				input.setAttribute("size", `2`);
+				input.id = "multSelect";
+				input.setAttribute("data-placeholder", " ");
+				setTimeout(multipleSelect, 0);
 			} else {
 				input = document.createElement("input");
 				input.setAttribute("type", `${value}`);
@@ -110,25 +121,29 @@ function createInput(value) {
 			}
 		}
 
-		//поменял тип на text, плагин маска не работала с тип number
+		//textarea
 		if (key === "type") {
-			if (value === "number") {
-				input = document.createElement("input");
-				input.setAttribute("type", `text`);
+			if (value === "textarea") {
+				input = document.createElement("textarea");
+				input.setAttribute("rows", "5");
 			}
 		}
 
 		// добавляем маску
 		if (key === "mask") {
-			input.classList.add(`maskInput`);
-			$(".maskInput").mask(`${value}`);
+			input.type = "text";
+			let num = Math.random().toFixed(2) * 200;
+			let idName =  `${key}${num}`;
+            input.id = `${idName}`;
+            console.log(idName);
+			$(`${'#'}${idName}`).mask(`${value}`);
 		}
 
 		//подтягиваем option для select
 		if (key === "technologies") {
 			for (let i = 0; i < value.length; i++) {
 				option = document.createElement("option");
-				option.setAttribute("value", `${value[i]}`);
+				// option.setAttribute("value", `${value[i]}`);
 				option.innerText = value[i];
 				input.appendChild(option);
 			}
@@ -153,12 +168,26 @@ function createInput(value) {
 		if (key === "placeholder") {
 			input.setAttribute("placeholder", `${value}`);
 		}
-	
+
 		//проверка заполнено ли поле
 		if (key === "required") {
 			if (value === true) {
 				input.setAttribute("required", ``);
 			}
+		}
+
+		//добавляем определённые цвета в input type = color
+		if (key === "colors") {
+			input.setAttribute("list", "dataList");
+			colorList = document.createElement("datalist");
+			colorList.id = "dataList";
+
+			for (let i = 0; i < value.length; i++) {
+				option = document.createElement("option");
+				option.innerText = `${value[i]}`;
+				colorList.appendChild(option);
+			}
+			form.appendChild(colorList);
 		}
 	});
 	form.appendChild(input);
@@ -219,9 +248,15 @@ container.addEventListener("click", function (event) {
 	}
 });
 
-// function addMask(value) {
-// 	console.log(value);
-// 	$(document).ready(function () {
-// 		$("").mask(`${value}`);
-// 	});
-// }
+//добавляем маску
+function addMask(value) {
+	console.log(value);
+	$(document).ready(function () {
+		$("").mask(`${value}`);
+	});
+}
+
+// множественный выбор select option
+function multipleSelect() {
+	$("#multSelect").chosen();
+}
