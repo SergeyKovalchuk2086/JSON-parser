@@ -132,18 +132,15 @@ function createInput(value) {
 		// добавляем маску
 		if (key === "mask") {
 			input.type = "text";
-			let num = Math.random().toFixed(2) * 200;
-			let idName =  `${key}${num}`;
-            input.id = `${idName}`;
-            console.log(idName);
-			$(`${'#'}${idName}`).mask(`${value}`);
+			let idName = value.replace(/\D+/g, "");
+			input.id = `${idName}`;
+			setTimeout(addMask, 0, value, idName);
 		}
 
 		//подтягиваем option для select
 		if (key === "technologies") {
 			for (let i = 0; i < value.length; i++) {
 				option = document.createElement("option");
-				// option.setAttribute("value", `${value[i]}`);
 				option.innerText = value[i];
 				input.appendChild(option);
 			}
@@ -249,11 +246,9 @@ container.addEventListener("click", function (event) {
 });
 
 //добавляем маску
-function addMask(value) {
-	console.log(value);
-	$(document).ready(function () {
-		$("").mask(`${value}`);
-	});
+function addMask(value, idName) {
+	let ident = '#'
+	$(`${ident}${idName}`).mask(`${value}`);
 }
 
 // множественный выбор select option

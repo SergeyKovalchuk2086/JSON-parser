@@ -6,23 +6,14 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-body {
-	font-size: 18px;
-	user-select: none;
-}
-
 .container {
 	max-width: 370px;
 	margin: 50px auto;
-	/* display: grid;
-	grid-template-columns: 250px 102px;
-	grid-template-rows: 40px minmax(300px, 1035px);
-	grid-column-gap: 15px; */
 }
 
-.buttons {
-	display: flex;
-	justify-content: space-between;
+body {
+	font-size: 18px;
+	user-select: none;
 }
 
 form {
@@ -51,15 +42,38 @@ input {
 	border-radius: 5px;
 }
 
-form[name="register"] input {
-	margin-bottom: 25px;
-}
-
 a {
 	text-decoration: none;
 	color: black;
 	font-size: 16px;
 	cursor: pointer;
+}
+
+button {
+	max-width: 371px;
+	height: 30px;
+	padding: 0;
+}
+
+textarea {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 370px;
+	padding-left: 5px;
+}
+
+legend {
+	text-align: center;
+	margin: 15px 0 5px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+form[name="register"] input {
+	margin-bottom: 25px;
 }
 
 input[type="file"] {
@@ -81,7 +95,6 @@ input[type="color"] {
 	margin-left: 32px;
 	margin-bottom: 10px;
 	height: 25px;
-	/* width: 25px; */
 }
 
 form[name="website_color_scheme"] {
@@ -96,22 +109,6 @@ form .inputFile {
 	border-radius: 0;
 }
 
-.deleteBtn {
-	display: block;
-	font-size: 25px;
-	height: 30px;
-	width: 103px;
-	background-color: #fff;
-	border: 1px solid black;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.deleteBtn:hover {
-	transition: all ease 1s;
-	background-color: red;
-}
-
 label[for="upload"] {
 	display: block;
 	border: 1px solid black;
@@ -122,12 +119,6 @@ label[for="upload"] {
 	cursor: pointer;
 	border-radius: 5px;
 	margin: 0;
-}
-
-button {
-	max-width: 371px;
-	height: 30px;
-	padding: 0;
 }
 
 button[type="submit"] {
@@ -147,6 +138,22 @@ button[type="submit"] + button[type="submit"] {
 
 form [name="login"] button[type="submit"] {
 	margin-top: 10px;
+}
+
+.deleteBtn {
+	display: block;
+	font-size: 25px;
+	height: 30px;
+	width: 103px;
+	background-color: #fff;
+	border: 1px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.deleteBtn:hover {
+	transition: all ease 1s;
+	background-color: red;
 }
 
 .links {
@@ -189,7 +196,6 @@ form [name="login"] button[type="submit"] {
 
 .chosen-container {
 	border: 1px solid black;
-	/* width: 370px; */
 	border-radius: 5px;
 	margin: 0;
 	max-width: 370px !important;
@@ -199,17 +205,6 @@ form [name="login"] button[type="submit"] {
 	border: 0;
 	margin-left: 2px;
 	width: 95%;
-}
-
-textarea {
-	border: 1px solid black;
-	border-radius: 5px;
-	width: 370px;
-}
-
-legend {
-	text-align: center;
-	margin: 15px 0 5px;
 }
 
 .scheme {
@@ -226,7 +221,9 @@ legend {
 	right: 28px;
 }
 
-
+.register input[type="text"] {
+	margin-top: 15px;
+}
 
 @media (max-width: 420px) {
 	.deleteBtn {
@@ -257,6 +254,10 @@ legend {
 
 	.chosen-container {
 		width: 340px !important;
+	}
+
+	form[name="website_color_scheme"] label {
+		width: 195px;
 	}
 }
 
@@ -311,10 +312,16 @@ legend {
 	}
 
 	input[type="color"] {
-		margin-left: 47px;
+		margin-left: 15px;
 	}
 
 	input[type="checkbox"] {
 		margin: 0 0 0 50px;
+	}
+
+	.scheme .checkbox {
+		position: absolute;
+		top: 72px;
+		right: 46px;
 	}
 }
