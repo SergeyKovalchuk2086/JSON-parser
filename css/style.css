@@ -211,14 +211,22 @@ form [name="login"] button[type="submit"] {
 	position: relative;
 }
 
+.scheme legend {
+	margin-bottom: 10px;
+}
+
 .scheme label {
 	float: left;
 }
 
+.scheme .color {
+	margin-top: 10px;
+}
+
 .scheme .checkbox {
 	position: absolute;
-	top: 75px;
-	right: 28px;
+	top: 86px;
+	right: 29px;
 }
 
 .register input[type="text"] {
@@ -321,7 +329,7 @@ form [name="login"] button[type="submit"] {
 
 	.scheme .checkbox {
 		position: absolute;
-		top: 72px;
+		top: 85px;
 		right: 46px;
 	}
 }

@@ -1,4 +1,4 @@
-const upload = document.querySelector("#upload");
+const upload = document.querySelector("#upload");//блок с кнопками загрузить файл и удалить
 const container = document.querySelector(".container");
 
 //загружаем файл
@@ -30,13 +30,15 @@ function displayForm(contentData) {
 	Object.entries(contentData).forEach(([key, value]) => {
 		//form name
 		if (key === "name") {
-			legend = document.createElement("legend");
-			legend.innerText = `${value}`;
-			form.appendChild(legend);
+			// legend = document.createElement("legend");
+			// legend.innerText = `${value}`;
+			// form.appendChild(legend);
 
 			form.setAttribute("name", `${value}`);
 			form.classList.add(`${value}`);
 			container.appendChild(form);
+
+			createLegend(value);
 			if (value === "website_color_scheme") {
 				form.classList.add("scheme");
 			}
@@ -88,6 +90,19 @@ function displayForm(contentData) {
 			}
 		}
 	});
+}
+
+//создаём legend для формы
+function createLegend(value) {
+	legend = document.createElement("legend");
+
+	//меняем нижнее подчёркивание на пробел
+	let legendName = value.replace(/_/g, ' ');
+
+	//первую букву делаем заглавной
+	legendName = legendName[0].toUpperCase() + legendName.slice(1);
+	legend.innerText = `${legendName}`;
+	form.appendChild(legend);
 }
 
 //создаём label
